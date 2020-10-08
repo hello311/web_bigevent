@@ -1,3 +1,15 @@
+   //不论成功或者失败都会调用complete回调函数
+    /* complete:function(res){
+        // console.log('执行了complete回调');
+        console.log(res);
+        //在complete回调函数中，可以使用responseJSON拿到服务器响应回来的数据
+        if(res.responseJSON.status===1&&res.responseJSON.message=='身份认证失败！'){
+            //强制清空token
+            localStorage.removeItem('token');
+            //强制跳转到登录页面
+            location.href='/login.html';
+        }
+    } */
 $(function(){
     var layer=layui.layer;
     //调用getUserInfo获取用户信息
@@ -29,23 +41,11 @@ $.ajax({
       if(res.status!==0){
           return layui.layer.msg('获取用户信息失败！')
       }
-      console.log(res);
+    //   console.log(res);
       //调用renderAvatar渲染用户头像
       renderAvatar(res.data)
 
     },
-    //不论成功或者失败都会调用complete回调函数
-    /* complete:function(res){
-        // console.log('执行了complete回调');
-        console.log(res);
-        //在complete回调函数中，可以使用responseJSON拿到服务器响应回来的数据
-        if(res.responseJSON.status===1&&res.responseJSON.message=='身份认证失败！'){
-            //强制清空token
-            localStorage.removeItem('token');
-            //强制跳转到登录页面
-            location.href='/login.html';
-        }
-    } */
     
 })
 }
@@ -63,6 +63,6 @@ function renderAvatar(user){
         // 渲染文本头像
         $('.layui-nav-img').hide();
         var first=name[0].toUpperCase();
-        $('.text-avatar').html(first)
+        $('.text-avatar').html(first);
     }
 }
