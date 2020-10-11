@@ -29,6 +29,7 @@ $(function () {
         var file = e.target.files[0];
         //将文件转换为路径
         var imgURL = URL.createObjectURL(file);
+        
         //重新初始化裁剪区域
         $image
             .cropper('destroy') // 销毁旧的裁剪区域
@@ -37,6 +38,7 @@ $(function () {
     })
     // 为确定按钮绑定点击事件
     $('#btnUpload').on('click',function(){
+        
         //1.要拿到用户裁剪之后的头像
         var dataURL = $image
         .cropper('getCroppedCanvas', {
@@ -46,6 +48,7 @@ $(function () {
         })
         .toDataURL('image/png')
         //2.调用接口，把头像上传到服务器
+        // console.log(dataURL);
         $.ajax({
             type: "post",
             url: "/my/update/avatar",

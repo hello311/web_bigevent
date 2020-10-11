@@ -27,9 +27,13 @@ $(function(){
                 if(res.status!==0){
                     return layer.msg('更新密码失败')
                 }
-                layer.msg('更新密码成功')
+                layer.msg('更新密码成功，2秒后重新登录')
                 //重置表单
                 $('.layui-form')[0].reset();
+                //两秒钟重新登录
+                setTimeout(() => {
+                  window.parent.location.href="/login.html";
+                }, 2000);
             }
         });
     })
