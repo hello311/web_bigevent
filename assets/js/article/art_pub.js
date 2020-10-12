@@ -46,12 +46,16 @@ $(function () {
     })
     var art_state = '已发布';
     $('#btnSave2').on('click', function () {
+        //这个按钮有submit属性，先进行点击事件再进行submit事件
         art_state = '草稿';
     })
     $('#form_pub').on('submit', function (e) {
         e.preventDefault()
         var fd = new FormData($(this)[0]);
-        console.log(fd);
+       /*  fd.forEach(function(v,k){
+            console.log(k+':'+v);
+        }) */
+ 
         //将发布文章的状态存入fd
         fd.append('state', art_state);
         $image
@@ -73,7 +77,7 @@ $(function () {
            contentType: false,
            processData: false,
            success: function (res) {
-               console.log(res);
+            //    console.log(res);
            }
        });
    }
